@@ -90,8 +90,19 @@ async function run() {
       const result = await coffeeCollection.deleteOne(query);
       res.send(result);
     });
+
     //////////////////////////////////////////
-    // user related api
+    //  user related api  //
+    //////////////////////////////////////////
+
+    // to read all users data
+    app.get("/user", async (req, res) => {
+      const cursor = userCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
+    // create a user
     app.post("/user", async (req, res) => {
       const user = req.body;
       console.log(user);
